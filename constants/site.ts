@@ -20,6 +20,7 @@ export const NAV_LINKS = [
   { label: "About Us", href: "/about-us" },
   { label: "Services", href: "/services", hasDropdown: true },
   { label: "Projects", href: "/projects" },
+  { label: "Blog", href: "/blog" },
 ] as const;
 
 export const SERVICES_DROPDOWN_ITEMS = [

@@ -31,7 +31,7 @@ export const FEATURED_UPDATE: FeaturedUpdate = {
   location: "Heritage Tank Farm Site",
   date: "February 2024",
   image: "/Service Image 3.png",
-  href: "#",
+  href: "/projects/storage-tank-inspection",
 };
 
 export const STANDARD_UPDATES: StandardUpdate[] = [
@@ -42,7 +42,7 @@ export const STANDARD_UPDATES: StandardUpdate[] = [
     date: "November 2025",
     meta: "3-Day Workshop",
     image: "/training-1.png",
-    href: "#",
+    href: "/trainings/quality-assurance-control-fundamentals",
   },
   {
     id: "pipeline-project",
@@ -51,6 +51,6 @@ export const STANDARD_UPDATES: StandardUpdate[] = [
     date: "July 2024",
     meta: "Fabrication and installation",
     image: "/training-2.jpg",
-    href: "#",
+    href: "/projects/flowline-leak-repair",
   },
 ];
