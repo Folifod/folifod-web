@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ProjectsPageCard as ProjectsPageCardType } from "@/constants/projects-page";
+import type { ProjectsPageCardView } from "@/lib/projects-display";
 
 type ProjectsPageCardProps = {
-  card: ProjectsPageCardType;
+  card: ProjectsPageCardView;
 };
 
 export function ProjectsPageCard({ card }: ProjectsPageCardProps) {

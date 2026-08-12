@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+}
+
+enum PublishStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model User {
+  id           String        @id @default(cuid())
+  email        String        @unique
+  name         String?
+  passwordHash String
+  role         Role          @default(ADMIN)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  invitesSent  AdminInvite[] @relation("InvitedBy")
+}
+
+model AdminInvite {
+  id          String    @id @default(cuid())
+  email       String
+  tokenHash   String    @unique
+  role        Role      @default(ADMIN)
+  expiresAt   DateTime
+  acceptedAt  DateTime?
+  invitedById String
+  invitedBy   User      @relation("InvitedBy", fields: [invitedById], references: [id])
+  createdAt   DateTime  @default(now())
+
+  @@index([email])
+}
+
+model Project {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  title         String
+  dateLabel     String?
+  client        String?
+  location      String?
+  excerpt       String?
+  sections      Json          @default("[]")
+  heroImage     String?
+  introImage    String?
+  galleryImages String[]
+  featured      Boolean       @default(false)
+  status        PublishStatus @default(DRAFT)
+  publishedAt   DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Training {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  title       String
+  dateLabel   String?
+  meta        String?
+  location    String?
+  description String?
+  image       String?
+  featured    Boolean       @default(false)
+  status      PublishStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model BlogPost {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  title       String
+  excerpt     String?
+  content     String
+  coverImage  String?
+  authorName  String?
+  status      PublishStatus @default(DRAFT)
+  publishedAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}

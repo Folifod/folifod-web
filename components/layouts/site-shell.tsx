@@ -22,7 +22,7 @@ export function SiteShell({
   if (floatingNav && fullViewportHero && heroChild) {
     return (
       <>
-        <div className="relative z-30">
+        <div className="relative z-50">
           <TopBar />
           <SiteHeader variant="floating" />
         </div>
@@ -36,7 +36,7 @@ export function SiteShell({
   return (
     <>
       {floatingNav ? (
-        <div className="relative z-30">
+        <div className="relative z-50">
           <TopBar />
           <SiteHeader variant="floating" />
         </div>

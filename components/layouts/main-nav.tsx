@@ -22,7 +22,7 @@ export function MainNav({ className, onLinkClick }: MainNavProps) {
 
           if (hasDropdown) {
             return (
-              <li key={link.label} className="group relative">
+              <li key={link.label} className="group relative lg:hover:z-[100] lg:focus-within:z-[100]">
                 <button
                   type="button"
                   className="inline-flex w-full items-center justify-between gap-1 py-2 text-left text-[15px] font-medium text-[#2d2d2d] transition-colors hover:text-[#00aeef] lg:hidden"
@@ -67,7 +67,7 @@ export function MainNav({ className, onLinkClick }: MainNavProps) {
                   ))}
                 </ul>
 
-                <ul className="hidden min-w-[190px] border border-[#e9eef4] bg-white py-2 shadow-[0_10px_24px_rgba(0,0,0,0.1)] lg:absolute lg:left-0 lg:top-full lg:z-50 lg:block lg:translate-y-2 lg:invisible lg:opacity-0 lg:transition lg:duration-150 lg:group-hover:visible lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:group-focus-within:visible lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100">
+                <ul className="hidden min-w-[190px] border border-[#e9eef4] bg-white py-2 shadow-[0_10px_24px_rgba(0,0,0,0.1)] lg:absolute lg:left-0 lg:top-full lg:z-[100] lg:block lg:translate-y-2 lg:invisible lg:opacity-0 lg:transition lg:duration-150 lg:group-hover:visible lg:group-hover:translate-y-0 lg:group-hover:opacity-100 lg:group-focus-within:visible lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100">
                   {SERVICES_DROPDOWN_ITEMS.map((item) => (
                     <li key={item.label}>
                       <Link

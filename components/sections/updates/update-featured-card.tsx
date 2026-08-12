@@ -38,7 +38,7 @@ export function UpdateFeaturedCard({ update }: UpdateFeaturedCardProps) {
         </div>
 
         <div className="flex w-full flex-col items-center justify-between gap-3 text-sm sm:flex-row sm:gap-4">
-          <span className="font-medium">{update.location}</span>
+          {update.location ? <span className="font-medium">{update.location}</span> : <span />}
           <span className="inline-flex items-center gap-1.5">
             <CalendarIcon className="h-4 w-4 shrink-0" />
             {update.date}

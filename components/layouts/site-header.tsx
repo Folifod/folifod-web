@@ -22,12 +22,12 @@ export function SiteHeader({ variant = "static" }: SiteHeaderProps) {
     return (
       <header className="absolute left-0 right-0 top-24 z-50 max-lg:translate-y-0 lg:-translate-y-1/2">
         <Container className="px-4 sm:px-6 lg:px-8">
-          <div className="overflow-hidden rounded-lg bg-white shadow-[0_4px_28px_rgba(0,0,0,0.14)]">
-            <div className="flex min-h-[68px] items-stretch sm:min-h-[72px]">
-              <div className="relative flex flex-1 items-center px-4 sm:px-6">
+          <div className="overflow-visible rounded-lg bg-white shadow-[0_4px_28px_rgba(0,0,0,0.14)]">
+            <div className="flex min-h-[68px] items-stretch overflow-visible sm:min-h-[72px]">
+              <div className="relative flex flex-1 items-center overflow-visible px-4 sm:px-6">
                 <SiteLogo />
 
-                <div className="absolute left-1/2 hidden -translate-x-1/2 lg:block">
+                <div className="absolute left-1/2 hidden -translate-x-1/2 overflow-visible lg:block">
                   <MainNav />
                 </div>
 
@@ -99,7 +99,7 @@ export function SiteHeader({ variant = "static" }: SiteHeaderProps) {
   }
 
   return (
-    <header className="relative z-30 border-b border-[#ececec] bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+    <header className="relative z-50 border-b border-[#ececec] bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
       <Container className="flex min-h-[72px] items-center justify-between gap-6 py-3">
         <SiteLogo />
 
