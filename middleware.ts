@@ -1,18 +1,37 @@
-import NextAuth from "next-auth";
-import { NextResponse } from "next/server";
-import { authConfig } from "@/lib/auth.config";
+import { getToken } from "next-auth/jwt";
+import { NextResponse, type NextRequest } from "next/server";
 
-const { auth } = NextAuth(authConfig);
+async function getSessionToken(req: NextRequest) {
+  const secret = process.env.AUTH_SECRET ?? process.env.NEXTAUTH_SECRET;
+  if (!secret) {
+    return null;
+  }
 
-export default auth((req) => {
+  try {
+    return await getToken({
+      req,
+      secret,
+    });
+  } catch {
+    return null;
+  }
+}
+
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  const isLoggedIn = Boolean(req.auth);
 
   const isAdminArea = pathname.startsWith("/admin");
   const isPublicAdminPage =
     pathname.startsWith("/admin/login") || pathname.startsWith("/admin/accept-invite");
 
-  if (!isAdminArea || isPublicAdminPage) {
+  if (!isAdminArea) {
+    return NextResponse.next();
+  }
+
+  const token = await getSessionToken(req);
+  const isLoggedIn = Boolean(token);
+
+  if (isPublicAdminPage) {
     if (isLoggedIn && pathname.startsWith("/admin/login")) {
       return NextResponse.redirect(new URL("/admin", req.url));
     }
@@ -26,7 +45,7 @@ export default auth((req) => {
   }
 
   return NextResponse.next();
-});
+}
 
 export const config = {
   matcher: ["/admin/:path*"],
